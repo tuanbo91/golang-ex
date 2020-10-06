@@ -46,6 +46,30 @@ objects:
         secret: "${GITHUB_WEBHOOK_SECRET}"
     postCommit:
       script: go test -v ./...
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: golang-demo-v1-1
+  spec:
+    source:
+      type: Git
+      git:
+        uri: "${SOURCE_REPOSITORY_URL_1_1}"
+        ref: "${SOURCE_REPOSITORY_REF_1_1}"
+      contextDir: "${CONTEXT_DIR}"
+    strategy:
+      type: Docker
+    output:
+      to:
+        kind: ImageStreamTag
+        name: golang-demo-imagestream:1.1
+    triggers:
+    - type: ConfigChange
+    - type: GitHub
+      github:
+        secret: "${GITHUB_WEBHOOK_SECRET}"
+    postCommit:
+      script: go test -v ./...
 - kind: HorizontalPodAutoscaler
   apiVersion: autoscaling/v1
   metadata:
@@ -63,6 +87,10 @@ parameters:
   value: https://github.com/tuanbo91/golang-ex.git
 - name: SOURCE_REPOSITORY_REF
   value: v1.0
+- name: SOURCE_REPOSITORY_URL_1_1
+  value: https://github.com/tuanbo91/golang-ex.git
+- name: SOURCE_REPOSITORY_REF_1_1
+  value: v1.1
 - name: CONTEXT_DIR
 - name: GITHUB_WEBHOOK_SECRET
   generate: expression

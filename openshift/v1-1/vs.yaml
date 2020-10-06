@@ -15,8 +15,8 @@ spec:
         - destination:
             host: golang-demo-service.golang-demo.svc.cluster.local
             subset: '10'
-          weight: 50
+          weight: 100
         - destination:
             host: golang-demo-service.golang-demo.svc.cluster.local
             subset: '11'
-          weight: 50
+          weight: 0
