@@ -86,11 +86,11 @@ parameters:
 - name: SOURCE_REPOSITORY_URL
   value: https://github.com/tuanbo91/golang-ex.git
 - name: SOURCE_REPOSITORY_REF
-  value: v1.0
+  value: 1.0-alpine
 - name: SOURCE_REPOSITORY_URL_1_1
   value: https://github.com/tuanbo91/golang-ex.git
 - name: SOURCE_REPOSITORY_REF_1_1
-  value: v1.1
+  value: 1.1-alpine
 - name: CONTEXT_DIR
 - name: GITHUB_WEBHOOK_SECRET
   generate: expression
