@@ -4,7 +4,7 @@ metadata:
   name: golang-demo-service
   namespace: golang-demo
   labels:
-    kiali_wizard: weighted_routing
+    kiali_wizard: traffic_shifting
 spec:
   hosts:
     - chat.leanhtuan.org

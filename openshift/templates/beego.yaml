@@ -81,7 +81,7 @@ objects:
       apiVersion: apps/v1
       kind: Deployment
       name: golang-demo-v1-0
-    targetCPUUtilizationPercentage: 50
+    targetCPUUtilizationPercentage: 30
 parameters:
 - name: SOURCE_REPOSITORY_URL
   value: https://github.com/tuanbo91/golang-ex.git

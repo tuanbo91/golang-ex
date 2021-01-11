@@ -45,11 +45,11 @@ spec:
           protocol: TCP
         resources:
           limits:
-            cpu: 100m
-            memory: 100Mi
-          requests:
             cpu: 50m
-            memory: 50Mi
+            memory: 64Mi
+          requests:
+            cpu: 25m
+            memory: 32Mi
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
