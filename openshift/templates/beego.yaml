@@ -1,12 +1,13 @@
 ---
 kind: Template
-apiVersion: v1
+apiVersion: template.openshift.io/v1
 metadata:
   name: golang-demo
 labels:
   template: golang-demo
   app: golang-demo
 objects:
+
 - kind: Service
   apiVersion: v1
   metadata:
@@ -17,11 +18,13 @@ objects:
       port: 8080
       targetPort: 8080
     selector:
-      name: golang-demo  
+      name: golang-demo
+
 - kind: ImageStream
   apiVersion: v1
   metadata:
     name: golang-demo-imagestream
+
 - kind: BuildConfig
   apiVersion: v1
   metadata:
@@ -46,6 +49,7 @@ objects:
         secret: "${GITHUB_WEBHOOK_SECRET}"
     postCommit:
       script: go test -v ./...
+      
 - kind: BuildConfig
   apiVersion: v1
   metadata:
@@ -70,18 +74,7 @@ objects:
         secret: "${GITHUB_WEBHOOK_SECRET}"
     postCommit:
       script: go test -v ./...
-- kind: HorizontalPodAutoscaler
-  apiVersion: autoscaling/v1
-  metadata:
-    name: golang-demo-hpa
-  spec:
-    maxReplicas: 10
-    minReplicas: 1
-    scaleTargetRef:
-      apiVersion: apps/v1
-      kind: Deployment
-      name: golang-demo-v1-0
-    targetCPUUtilizationPercentage: 30
+
 parameters:
 - name: SOURCE_REPOSITORY_URL
   value: https://github.com/tuanbo91/golang-ex.git

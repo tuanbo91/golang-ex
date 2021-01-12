@@ -1,0 +1,22 @@
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2beta2
+metadata:
+  name: golang-demo-hpa
+  namespace: golang-demo
+  labels:
+    app: golang-demo
+    template: golang-demo
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: golang-demo-v1-0
+    apiVersion: apps/v1
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 30
